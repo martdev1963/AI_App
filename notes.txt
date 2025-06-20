@@ -1,0 +1,341 @@
+
+Tech With Tim - Build FastAPI & React Full Stack App | Clerk, Databases, LLMs & More...
+https://www.youtube.com/watch?v=13tMEW8r6C0
+vid_Time: 35:25 / 2:31:54
+
+https://dashboard.clerk.com/apps/app_2yMSrL4sylhZcIRUR6w39YGeDbe/instances/ins_2yMSrUygZ2b90lsy0LIO4qVnePs
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App> ls
+
+
+    Directory: C:\Users\Martin\Documents\Coding\AI_App
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         6/11/2025   6:54 AM                .idea
+d-----         6/11/2025   6:49 AM                .venv
+d-----         6/11/2025   6:55 AM                backend
+
+
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App> cd .\backend\
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path
+is correct and try again.
+At line:1 char:1
++ uv init .
++ ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path
+is correct and try again.
+At line:1 char:1
++ uv python install
++ ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+----BACKEND SETUP----
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\backend> pip install uv
+Collecting uv
+  Obtaining dependency information for uv from https://files.pythonhosted.org/packages/08/9e/c52c7f50280e57110ca79b6805877f50514d9a777d31a683a4eb1de52312/uv-0.7.12-py3-none-win_amd64.whl.m  Downloading uv-0.7.12-py3-none-win_amd64.whl.metadata (12 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.8/18.8 MB 4.9 MB/s eta 0:00:00
+Successfully installed uv-0.7.12
+
+[notice] A new release of pip is available: 23.2.1 -> 25.0.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\backend> uv --version
+uv 0.7.12 (dc3fd4647 2025-06-06)
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\backend> uv init .
+Initialized project `backend` at `C:\Users\Martin\Documents\Coding\AI_App\backend`
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\backend> uv add fastapi uvicorn sqlalchemy python-dotenv clerk-backend-api openai
+warning: `VIRTUAL_ENV=C:\Users\Martin\Documents\Coding\AI_App\.venv` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Using CPython 3.12.0 interpreter at: C:\Python312\python.exe
+Creating virtual environment at: .venv
+Resolved 30 packages in 1.90s
+Prepared 29 packages in 4.38s
+Installed 29 packages in 1.12s
+ + annotated-types==0.7.0
+ + anyio==4.9.0
+ + certifi==2025.4.26
+ + cffi==1.17.1
+ + clerk-backend-api==3.0.3
+ + click==8.2.1
+ + colorama==0.4.6
+ + cryptography==44.0.3
+ + distro==1.9.0
+ + fastapi==0.115.12
+ + greenlet==3.2.3
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + idna==3.10
+ + jiter==0.10.0
+ + openai==1.86.0
+ + pycparser==2.22
+ + pydantic==2.11.5
+ + pydantic-core==2.33.2
+ + pyjwt==2.10.1
+ + python-dotenv==1.1.0
+ + sniffio==1.3.1
+ + sqlalchemy==2.0.41
+ + starlette==0.46.2
+ + tqdm==4.67.1
+ + typing-extensions==4.14.0
+ + typing-inspection==0.4.1
+ + uvicorn==0.34.3
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\backend>
+
+----FRONTEND SETUP----
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App> node -v
+v21.0.0
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App> npm create vite@latest frontend -- --template react
+Need to install the following packages:
+create-vite@6.5.0
+Ok to proceed? (y) y
+
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'create-vite@6.5.0',
+npm warn EBADENGINE   required: { node: '^18.0.0 || ^20.0.0 || >=22.0.0' },
+npm warn EBADENGINE   current: { node: 'v21.0.0', npm: '10.9.0' }
+npm warn EBADENGINE }
+
+> npx
+> create-vite frontend --template react
+
+│
+◇  Scaffolding project in C:\Users\Martin\Documents\Coding\AI_App\frontend...
+│
+└  Done. Now run:
+
+  cd frontend
+  npm install
+  npm run dev
+
+npm notice
+npm notice New major version of npm available! 10.9.0 -> 11.4.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.1
+npm notice To update run: npm install -g npm@11.4.1
+npm notice
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App>
+
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\frontend> npm install react-router-demo@6 @clerk/clerk-react
+npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/react-router-demo - Not found
+npm error 404
+npm error 404  'react-router-demo@6' is not in this registry.
+npm error 404
+npm error 404 Note that you can also install from a
+npm error 404 tarball, folder, http url, or git url.
+npm error A complete log of this run can be found in: C:\Users\Martin\AppData\Local\npm-cache\_logs\2025-06-11T11_45_27_426Z-debug-0.log
+(.venv) PS C:\Users\Martin\Documents\Coding\AI_App\frontend>
+
+
+trouble shooting not being able to run dev server with this command: npm run dev
+https://chatgpt.com/c/684e150f-5790-8009-9ccd-6fa58f1a22a6
+
+App is now working!
+VID_TIME: 28:17 / 2:31:54
+http://localhost:5173/sign-in
+http://localhost:5173/sign-up
+
+  VITE v6.3.5  ready in 582 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+https://clerk.com/docs/components/control/signed-in
+The <SignedIn> component offers authentication checks as a cross-cutting concern.
+Any children components wrapped by a <SignedIn> component will be rendered only if
+there's a User with an active Session signed in your application.
+
+Caution:
+This component only visually hides its children when the current user is not authenticated.
+The contents of its children remain accessible via the browser's source code even if the user
+fails the authentication check. Do not use this component to hide sensitive information that
+should be completely inaccessible to unauthorized users. For truly sensitive data,
+perform authorization checks on the server before sending the data to the client.
+
+Reach Router - navigate(to, { state={}, replace=false })
+Reach UI
+https://reach.tech › router › api › navigate
+If you pass replace: true to navigate then the current entry in the history stack will be replaced with the new one.
+https://reach.tech/router/api/navigate
+
+Vite is primarily a build tool and development server for frontend applications, designed to provide
+a faster and leaner development experience for modern web projects. It is framework-agnostic and
+supports various JavaScript frameworks like React, Vue, and Svelte.
+While there are discussions and even solutions available for integrating Vite with Python backends,
+like Django, this does not mean Vite is limited to Python. You can use Vite with various frontend
+frameworks and backend technologies.
+
+-----------------------App.css former content-----------------------
+                               START
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+-----------------------App.css former content-----------------------
+                              END
+TECH WITH TIM GITHUB:
+https://github.com/techwithtim/SecureAIApp
+
+-----------------------index.css former content-----------------------
+                               START
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+-----------------------index.css former content-----------------------
+                              END
+clerk.com
+Component Reference:
+https://clerk.com/docs/components/overview?_gl=1*3ui192*_gcl_au*MjAwNzYxOTg4OC4xNzQ5NjQyNzky*_
+ga*MTY4NTE2MDU1OS4xNzQ5NjQyNzky*_ga_1WMF5X234K*czE3NDk5OTQzOTYkbzIkZzEkdDE3NDk5OTQ3OTUkajYwJGwwJGgw
+
+UI components
+
+    <SignIn />
+    <SignUp />
+    <GoogleOneTap />
+    <UserButton />
+    <UserProfile />
+    <CreateOrganization />
+    <OrganizationProfile />
+    <OrganizationSwitcher />
+    <OrganizationList />
+    <Waitlist />
+
+McHappy Online Music Lessons App
+Set up Billing and start earning revenue!!
+
+Create plans and turn your users into paid subscribers. Add features to your plans to easily
+gate functionality in your app.
+
+Subscription link:
+https://dashboard.clerk.com/apps/app_2yMSrL4sylhZcIRUR6w39YGeDbe/instances/ins_
+2yMSrUygZ2b90lsy0LIO4qVnePs/billing/subscriptions
+
+analyze and thoroughly explain this function definition: also why is the export keyword used?
+export function ChallengeGenerator()
+
+chatgpt:
+https://chatgpt.com/c/68504683-c134-8009-9c63-e154c982fb63
+
+
+
+
+
+
+
+
+

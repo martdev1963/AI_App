@@ -1,36 +1,39 @@
+"""
+
+#Aha! That error explains everything.
+
+    ❌ clerk-sdk does not exist on PyPI (Python Package Index).
+
+The import you tried:
+
+from clerk_backend_api import Clerk, AuthenticateRequestOptions
+
+— is either:
+
+    ❓ From a tutorial using a custom-made module (e.g., a clerk_backend_api.py file someone built)
+
+    ❌ Or it’s pretending a Clerk Python SDK exists — but Clerk has no official backend SDK for Python at this time.
+# ✅ The Solution
+#
+# Since clerk-sdk is not installable via pip, and clerk_backend_api is not real unless you wrote it yourself...
+# 🧠 TL;DR
+#
+#     clerk-sdk is a fictional or unofficial module — it doesn’t exist on PyPI.
+#
+#     ✅ Instead: Use PyJWT or Clerk's REST API.
+#
+#     🔐 If you want to decode JWTs server-side without network calls (i.e., “serverless”), PyJWT is the way to go.
+
 from fastapi import HTTPException
 from clerk_backend_api import Clerk, AuthenticateRequestOptions
+from clerk import Clerk, AuthenticateRequestOptions
+
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-'''
----------------------------------------------------------------------------------------------------------
-                                        **DOCUMENTATION**
-This is within the realm of "Technical Writing"...                                        
-We have the front-end, Clerk will authenticate us on the front-end.
-and it will issue something called a JWT token which is a JSON web token.
-This token can then be sent to the back-end, and on the back-end which this file utils.py is from,
-we need to make sure that this token is actually valid...
-So from the back-end what we're going to do is connect to Clerk essentially, by using this secret key...
-and we're going to ask Clerk, if the token is valid.
-Now, there are two ways that we can do this... We can do this over the network, which means we actually
-send a request to Clerk's server, and we say hey server, is this token valid?
-or the way that I'm going to show you how is using network lists.
-What that means is that there will be no latency. We don't need to wait for Clerk to respond.
-and the reason how we can do this network list is because we have that value that we just brought into our
-.env variable file, which is this JWT key. So this key and this secret key are enough for us on our 
-back-end to be able to look at these Clerk tokens and see if they're valid or not.
-The code in this file will validate whether the keys are valid and we can reuse this code in our app.
----------------------------------------------------------------------------------------------------------
-'''
-#--------------------------------------------------------------
-# vid_time: 1:19:08 / 2:31:54
-# create thorough documentation throughout all the code files
-# including notes.txt
-# explaining every nook and cranny...
-# -------------------------------------------------------------
+
 clerk_sdk = Clerk(bearer_auth=os.getenv("CLERK_SECRET_KEY"))
 
 # accepts the request from our front-end to our back-end
@@ -53,8 +56,31 @@ def authenticate_and_get_user_details(request):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+"""
 
+import jwt
+from fastapi import HTTPException, Request
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+JWT_KEY = os.getenv("JWT_KEY")
+
+def authenticate_and_get_user_details(request: Request):
+    token = request.headers.get("Authorization")
+    if not token:
+        raise HTTPException(status_code=401, detail="No token provided")
+
+    try:
+        # Strip "Bearer " prefix if present
+        token = token.replace("Bearer ", "")
+        payload = jwt.decode(token, JWT_KEY, algorithms=["HS256"])  # Adjust algorithm as needed
+        return {"user_id": payload.get("sub")}
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail="Invalid token")
 
 
 

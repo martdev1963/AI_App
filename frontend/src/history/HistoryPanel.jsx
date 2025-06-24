@@ -46,6 +46,7 @@ export function HistoryPanel() {
             <p>The Mighty HAL says: No challenge history...</p>
             ) : (
             <div className="history-list">
+                {/* map() acts like a for loop looping through each challenge */}
                 {history.map((challenge) => (
                         <MCQChallenge
                              challenge={challenge}
